@@ -1,0 +1,156 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400&display=swap");
+
+body {
+  font-family: "Open Sans", sans-serif;
+  background-color: #111212;
+  color: #fff;
+  size: 16px;
+  text-align: center;
+}
+
+h1 {
+  font-weight: 300;
+  font-size: 2em;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+#title h2 {
+  margin-top: 0;
+  font-weight: 300;
+  font-size: 1em;
+}
+
+#footerText {
+  font-size: 0.75em;
+  text-align: center;
+}
+
+#piano {
+  width: 75%;
+}
+
+#container {
+  text-align: center;
+}
+
+#nav {
+  display: inline-grid;
+  grid-template-columns: auto auto auto;
+}
+
+#gear, #help {
+  padding-left: 1em;
+  margin-top: 2em;
+}
+
+#btnSettings:focus,
+#btnHelp:focus {
+  outline: none;
+}
+
+#settings {
+  position: absolute;
+  /* background-color: #1e2328; */
+  background-color: #111212;
+  display: none;
+  width: 20%;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  border: 3px solid #d6e5e3;
+}
+
+#topSettings {
+  display: grid;
+  grid-template-columns: auto auto;
+  width: 50%;
+  margin: 0 auto;
+}
+
+#envelope {
+  margin: 0 auto;
+  width: 75%;
+  padding-bottom: 1em;
+}
+
+#envControl {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-gap: 1em;
+  border: 1px solid #d6e5e3;
+  padding: 1em;
+  border-radius: 25px;
+}
+
+.letterWhole {
+  fill: #1e2328;
+}
+
+.letterSharp {
+  fill: #d6e5e3;
+}
+
+.letterWhole, .letterSharp {
+  font-size: 100px;
+  font-family: "Open Sans";
+  font-weight: 700;
+}
+
+.note {
+  fill: #fff;
+}
+
+.white {
+  fill: #d6e5e3;
+  stroke: #111212;
+  stroke-width: 20px;
+}
+
+.keypress {
+  transform-origin: center;
+  transform: scale(0.995);
+}
+
+.black {
+  fill: #1e2328;
+}
+
+@media (max-width: 1919px) {
+  /* Laptops */
+  #settings {
+    width: 35%;
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+  /* Laptops */
+  #settings {
+    width: 40%;
+  }
+
+  #piano {
+    height: 400px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* Tablets */
+  #settings {
+    width: 60%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  /* Landscape Phones */
+  #settings {
+    width: 60%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  #settings {
+    width: 100%;
+  }
+}

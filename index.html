@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/13.0.1/Tone.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-Knob/1.2.13/jquery.knob.min.js"></script>
+    <title>Piano</title>
+  </head>
+
+  <body>
+    <div id="nav">
+      <div id="title">
+        <h1>mini synth</h1>
+        <h2>Powered by Tone.Js</h2>
+      </div>
+      <div id="gear">
+        <input
+          type="image"
+          id="btnSettings"
+          src="images/gear.png"
+          width="50px"
+          height="50px"
+        />
+      </div>
+      <div id="help">
+        <input
+          type="image"
+          id="btnHelp"
+          src="images/help.png"
+          width="50px"
+          height="50px"
+        />
+      </div>
+    </div>
+    <div id="settings">
+      <div id="topSettings">
+        <div id="volControl">
+          <p>Volume</p>
+          <input id="volume" class="knob" type="text" />
+        </div>
+        <div id="detuneControl">
+          <p>Pitch</p>
+          <input id="detune" class="knob" type="text" />
+        </div>
+      </div>
+      <div id="envelope">
+        <p>Envelope</p>
+        <div id="envControl">
+          <div id="envAttackControl">
+            <p>Attack</p>
+            <input id="envAttack" class="knob" type="text" />
+          </div>
+          <div id="envDecayControl">
+            <p>Decay</p>
+            <input id="envDecay" class="knob" type="text" />
+          </div>
+          <div id="envSustainkControl">
+            <p>Sustain</p>
+            <input id="envSustain" class="knob" type="text" />
+          </div>
+          <div id="envReleaseControl">
+            <p>Release</p>
+            <input id="envRelease" class="knob" type="text" />
+          </div>
+        </div>
+        <!-- https://tonejs.github.io/docs/r13/Synth -->
+      </div>
+    </div>
+    <div id="container">
+      <svg
+        id="piano"
+        xmlns="http://www.w3.org/2000/svg"
+        width="3501"
+        height="600"
+        viewBox="0 300 3501 300"
+      >
+        <path
+          id="noteC4Sharp"
+          data-note-name="c#4"
+          class="note sharp"
+          d="M231.168,117.674c17.127-5.913,34.519-1.365,38.844,10.159s-6.052,25.661-23.179,31.575-34.519,1.365-38.845-10.159S214.04,123.588,231.168,117.674ZM264.3,2h0.025a6.613,6.613,0,0,1,6.613,6.613V133.325a6.613,6.613,0,0,1-6.613,6.613H264.3a6.612,6.612,0,0,1-6.612-6.613V8.613A6.612,6.612,0,0,1,264.3,2Z"
+        />
+        <path
+          id="noteD4Sharp"
+          data-note-name="d#4"
+          class="note sharp"
+          d="M474.168,117.674c17.127-5.913,34.519-1.365,38.844,10.159s-6.052,25.661-23.179,31.575-34.519,1.365-38.845-10.159S457.04,123.588,474.168,117.674ZM507.3,2h0.025a6.613,6.613,0,0,1,6.613,6.613V133.325a6.613,6.613,0,0,1-6.613,6.613H507.3a6.612,6.612,0,0,1-6.612-6.613V8.613A6.612,6.612,0,0,1,507.3,2Z"
+        />
+        <path
+          id="noteF4Sharp"
+          data-note-name="f#4"
+          class="note sharp"
+          d="M982.168,117.674c17.127-5.913,34.522-1.365,38.842,10.159s-6.05,25.661-23.177,31.575-34.519,1.365-38.845-10.159S965.04,123.588,982.168,117.674ZM1015.3,2h0.02a6.614,6.614,0,0,1,6.62,6.613V133.325a6.614,6.614,0,0,1-6.62,6.613h-0.02a6.612,6.612,0,0,1-6.61-6.613V8.613A6.612,6.612,0,0,1,1015.3,2Z"
+        />
+        <path
+          id="noteG4Sharp"
+          data-note-name="g#4"
+          class="note sharp"
+          d="M1237.17,117.674c17.13-5.913,34.52-1.365,38.84,10.159s-6.05,25.661-23.18,31.575-34.52,1.365-38.84-10.159S1220.04,123.588,1237.17,117.674ZM1270.3,2h0.02a6.614,6.614,0,0,1,6.62,6.613V133.325a6.614,6.614,0,0,1-6.62,6.613h-0.02a6.612,6.612,0,0,1-6.61-6.613V8.613A6.612,6.612,0,0,1,1270.3,2Z"
+        />
+        <path
+          id="noteA4Sharp"
+          data-note-name="a#4"
+          class="note sharp"
+          d="M1488.17,117.674c17.13-5.913,34.52-1.365,38.84,10.159s-6.05,25.661-23.18,31.575-34.52,1.365-38.84-10.159S1471.04,123.588,1488.17,117.674ZM1521.3,2h0.02a6.614,6.614,0,0,1,6.62,6.613V133.325a6.614,6.614,0,0,1-6.62,6.613h-0.02a6.612,6.612,0,0,1-6.61-6.613V8.613A6.612,6.612,0,0,1,1521.3,2Z"
+        />
+        <path
+          id="noteC5Sharp"
+          data-note-name="c#5"
+          class="note sharp"
+          d="M1989.17,117.674c17.13-5.913,34.52-1.365,38.84,10.159s-6.05,25.661-23.18,31.575-34.52,1.365-38.84-10.159S1972.04,123.588,1989.17,117.674ZM2022.3,2h0.02a6.614,6.614,0,0,1,6.62,6.613V133.325a6.614,6.614,0,0,1-6.62,6.613h-0.02a6.612,6.612,0,0,1-6.61-6.613V8.613A6.612,6.612,0,0,1,2022.3,2Z"
+        />
+        <path
+          id="noteD5Sharp"
+          data-note-name="d#5"
+          class="note sharp"
+          d="M2244.17,117.674c17.13-5.913,34.52-1.365,38.84,10.159s-6.05,25.661-23.18,31.575-34.52,1.365-38.84-10.159S2227.04,123.588,2244.17,117.674ZM2277.3,2h0.02a6.614,6.614,0,0,1,6.62,6.613V133.325a6.614,6.614,0,0,1-6.62,6.613h-0.02a6.612,6.612,0,0,1-6.61-6.613V8.613A6.612,6.612,0,0,1,2277.3,2Z"
+        />
+        <path
+          id="noteF5Sharp"
+          data-note-name="f#5"
+          class="note sharp"
+          d="M2747.17,117.674c17.13-5.913,34.52-1.365,38.84,10.159s-6.05,25.661-23.18,31.575-34.52,1.365-38.84-10.159S2730.04,123.588,2747.17,117.674ZM2780.3,2h0.02a6.614,6.614,0,0,1,6.62,6.613V133.325a6.614,6.614,0,0,1-6.62,6.613h-0.02a6.612,6.612,0,0,1-6.61-6.613V8.613A6.612,6.612,0,0,1,2780.3,2Z"
+        />
+        <path
+          id="noteG5Sharp"
+          class="note sharp"
+          data-note-name="g#5"
+          d="M3002.17,117.674c17.13-5.913,34.52-1.365,38.84,10.159s-6.05,25.661-23.18,31.575-34.52,1.365-38.84-10.159S2985.04,123.588,3002.17,117.674ZM3035.3,2h0.02a6.614,6.614,0,0,1,6.62,6.613V133.325a6.614,6.614,0,0,1-6.62,6.613h-0.02a6.612,6.612,0,0,1-6.61-6.613V8.613A6.612,6.612,0,0,1,3035.3,2Z"
+        />
+        <path
+          id="noteA5Sharp"
+          data-note-name="a#5"
+          class="note sharp"
+          d="M3252.17,117.674c17.13-5.913,34.52-1.365,38.84,10.159s-6.05,25.661-23.18,31.575-34.52,1.365-38.84-10.159S3235.04,123.588,3252.17,117.674ZM3285.3,2h0.02a6.614,6.614,0,0,1,6.62,6.613V133.325a6.614,6.614,0,0,1-6.62,6.613h-0.02a6.612,6.612,0,0,1-6.61-6.613V8.613A6.612,6.612,0,0,1,3285.3,2Z"
+        />
+        <path
+          id="noteC4"
+          data-note-name="c4"
+          class="note whole"
+          d="M108.168,915.674c17.127-5.913,34.519-1.365,38.844,10.159s-6.052,25.661-23.179,31.575-34.519,1.365-38.845-10.159S91.04,921.588,108.168,915.674ZM141.3,800h0.025a6.613,6.613,0,0,1,6.613,6.613V931.325a6.613,6.613,0,0,1-6.613,6.613H141.3a6.612,6.612,0,0,1-6.612-6.613V806.613A6.612,6.612,0,0,1,141.3,800Z"
+        />
+        <path
+          id="noteD4"
+          data-note-name="d4"
+          class="note whole"
+          d="M358.168,915.674c17.127-5.913,34.519-1.365,38.844,10.159s-6.052,25.661-23.179,31.575-34.519,1.365-38.845-10.159S341.04,921.588,358.168,915.674ZM391.3,800h0.025a6.613,6.613,0,0,1,6.613,6.613V931.325a6.613,6.613,0,0,1-6.613,6.613H391.3a6.612,6.612,0,0,1-6.612-6.613V806.613A6.612,6.612,0,0,1,391.3,800Z"
+        />
+        <path
+          id="noteE4"
+          data-note-name="e4"
+          class="note whole"
+          d="M609.168,915.674c17.127-5.913,34.519-1.365,38.844,10.159s-6.052,25.661-23.179,31.575-34.519,1.365-38.845-10.159S592.04,921.588,609.168,915.674ZM642.3,800h0.025a6.613,6.613,0,0,1,6.613,6.613V931.325a6.613,6.613,0,0,1-6.613,6.613H642.3a6.612,6.612,0,0,1-6.612-6.613V806.613A6.612,6.612,0,0,1,642.3,800Z"
+        />
+        <path
+          id="noteF4"
+          data-note-name="f4"
+          class="note whole"
+          d="M859.168,915.674c17.127-5.913,34.519-1.365,38.844,10.159s-6.052,25.661-23.179,31.575-34.519,1.365-38.845-10.159S842.04,921.588,859.168,915.674ZM892.3,800h0.025a6.613,6.613,0,0,1,6.613,6.613V931.325a6.613,6.613,0,0,1-6.613,6.613H892.3a6.612,6.612,0,0,1-6.612-6.613V806.613A6.612,6.612,0,0,1,892.3,800Z"
+        />
+        <path
+          id="noteG4"
+          data-note-name="g4"
+          class="note whole"
+          d="M1115.17,919.674c17.13-5.913,34.52-1.365,38.84,10.159s-6.05,25.661-23.18,31.575-34.52,1.365-38.84-10.159S1098.04,925.588,1115.17,919.674ZM1148.3,804h0.02a6.614,6.614,0,0,1,6.62,6.613V935.325a6.614,6.614,0,0,1-6.62,6.613h-0.02a6.612,6.612,0,0,1-6.61-6.613V810.613A6.612,6.612,0,0,1,1148.3,804Z"
+        />
+        <path
+          id="noteA4"
+          data-note-name="a4"
+          class="note whole"
+          d="M1368.17,919.674c17.13-5.913,34.52-1.365,38.84,10.159s-6.05,25.661-23.18,31.575-34.52,1.365-38.84-10.159S1351.04,925.588,1368.17,919.674ZM1401.3,804h0.02a6.614,6.614,0,0,1,6.62,6.613V935.325a6.614,6.614,0,0,1-6.62,6.613h-0.02a6.612,6.612,0,0,1-6.61-6.613V810.613A6.612,6.612,0,0,1,1401.3,804Z"
+        />
+        <path
+          id="noteB4"
+          data-note-name="b4"
+          class="note whole"
+          d="M1621.17,915.674c17.13-5.913,34.52-1.365,38.84,10.159s-6.05,25.661-23.18,31.575-34.52,1.365-38.84-10.159S1604.04,921.588,1621.17,915.674ZM1654.3,800h0.02a6.614,6.614,0,0,1,6.62,6.613V931.325a6.614,6.614,0,0,1-6.62,6.613h-0.02a6.612,6.612,0,0,1-6.61-6.613V806.613A6.612,6.612,0,0,1,1654.3,800Z"
+        />
+        <path
+          id="noteC5"
+          data-note-name="c5"
+          class="note whole"
+          d="M1873.17,915.674c17.13-5.913,34.52-1.365,38.84,10.159s-6.05,25.661-23.18,31.575-34.52,1.365-38.84-10.159S1856.04,921.588,1873.17,915.674ZM1906.3,800h0.02a6.614,6.614,0,0,1,6.62,6.613V931.325a6.614,6.614,0,0,1-6.62,6.613h-0.02a6.612,6.612,0,0,1-6.61-6.613V806.613A6.612,6.612,0,0,1,1906.3,800Z"
+        />
+        <path
+          id="noteD5"
+          data-note-name="d5"
+          class="note whole"
+          d="M2124.17,915.674c17.13-5.913,34.52-1.365,38.84,10.159s-6.05,25.661-23.18,31.575-34.52,1.365-38.84-10.159S2107.04,921.588,2124.17,915.674ZM2157.3,800h0.02a6.614,6.614,0,0,1,6.62,6.613V931.325a6.614,6.614,0,0,1-6.62,6.613h-0.02a6.612,6.612,0,0,1-6.61-6.613V806.613A6.612,6.612,0,0,1,2157.3,800Z"
+        />
+        <path
+          id="noteE5"
+          data-note-name="e5"
+          class="note whole"
+          d="M2375.17,915.674c17.13-5.913,34.52-1.365,38.84,10.159s-6.05,25.661-23.18,31.575-34.52,1.365-38.84-10.159S2358.04,921.588,2375.17,915.674ZM2408.3,800h0.02a6.614,6.614,0,0,1,6.62,6.613V931.325a6.614,6.614,0,0,1-6.62,6.613h-0.02a6.612,6.612,0,0,1-6.61-6.613V806.613A6.612,6.612,0,0,1,2408.3,800Z"
+        />
+        <path
+          id="noteF5"
+          data-note-name="f5"
+          class="note whole"
+          d="M2621.17,915.674c17.13-5.913,34.52-1.365,38.84,10.159s-6.05,25.661-23.18,31.575-34.52,1.365-38.84-10.159S2604.04,921.588,2621.17,915.674ZM2654.3,800h0.02a6.614,6.614,0,0,1,6.62,6.613V931.325a6.614,6.614,0,0,1-6.62,6.613h-0.02a6.612,6.612,0,0,1-6.61-6.613V806.613A6.612,6.612,0,0,1,2654.3,800Z"
+        />
+        <path
+          id="noteG5"
+          data-note-name="g5"
+          class="note whole"
+          d="M2877.17,915.674c17.13-5.913,34.52-1.365,38.84,10.159s-6.05,25.661-23.18,31.575-34.52,1.365-38.84-10.159S2860.04,921.588,2877.17,915.674ZM2910.3,800h0.02a6.614,6.614,0,0,1,6.62,6.613V931.325a6.614,6.614,0,0,1-6.62,6.613h-0.02a6.612,6.612,0,0,1-6.61-6.613V806.613A6.612,6.612,0,0,1,2910.3,800Z"
+        />
+        <path
+          id="noteA5"
+          data-note-name="a5"
+          class="note whole"
+          d="M3127.17,915.674c17.13-5.913,34.52-1.365,38.84,10.159s-6.05,25.661-23.18,31.575-34.52,1.365-38.84-10.159S3110.04,921.588,3127.17,915.674ZM3160.3,800h0.02a6.614,6.614,0,0,1,6.62,6.613V931.325a6.614,6.614,0,0,1-6.62,6.613h-0.02a6.612,6.612,0,0,1-6.61-6.613V806.613A6.612,6.612,0,0,1,3160.3,800Z"
+        />
+        <path
+          id="noteB5"
+          data-note-name="b5"
+          class="note whole"
+          d="M3377.17,915.674c17.13-5.913,34.52-1.365,38.84,10.159s-6.05,25.661-23.18,31.575-34.52,1.365-38.84-10.159S3360.04,921.588,3377.17,915.674ZM3410.3,800h0.02a6.614,6.614,0,0,1,6.62,6.613V931.325a6.614,6.614,0,0,1-6.62,6.613h-0.02a6.612,6.612,0,0,1-6.61-6.613V806.613A6.612,6.612,0,0,1,3410.3,800Z"
+        />
+        <rect
+          id="C4"
+          data-note="c4"
+          data-key="90"
+          class="key white"
+          width="232"
+          height="964"
+        />
+        <rect
+          id="D4"
+          data-note="d4"
+          data-key="88"
+          class="key white"
+          x="250"
+          width="232"
+          height="964"
+        />
+        <rect
+          id="E4"
+          data-note="e4"
+          data-key="67"
+          class="key white"
+          x="501"
+          width="232"
+          height="964"
+        />
+        <rect
+          id="F4"
+          data-note="f4"
+          data-key="86"
+          class="key white"
+          x="751"
+          width="232"
+          height="964"
+        />
+        <rect
+          id="G4"
+          data-note="g4"
+          data-key="66"
+          class="key white"
+          x="1004"
+          width="232"
+          height="964"
+        />
+        <rect
+          id="A4"
+          data-note="a4"
+          data-key="78"
+          class="key white"
+          x="1257"
+          width="232"
+          height="964"
+        />
+        <rect
+          id="B4"
+          data-note="b4"
+          data-key="77"
+          class="key white"
+          x="1508"
+          width="232"
+          height="964"
+        />
+        <rect
+          id="C4Sharp"
+          data-note="c#4"
+          data-key="83"
+          class="key black"
+          x="183"
+          width="112"
+          height="676"
+        />
+        <rect
+          id="D4Sharp"
+          data-note="d#4"
+          data-key="68"
+          class="key black"
+          x="434"
+          width="112"
+          height="676"
+        />
+        <rect
+          id="F4Sharp"
+          data-note="f#4"
+          data-key="71"
+          class="key black"
+          x="938"
+          width="112"
+          height="676"
+        />
+        <rect
+          id="G4Sharp"
+          data-note="g#4"
+          data-key="72"
+          class="key black"
+          x="1189"
+          width="112"
+          height="676"
+        />
+        <rect
+          id="A4Sharp"
+          data-note="a#4"
+          data-key="74"
+          class="key black"
+          x="1440"
+          width="112"
+          height="676"
+        />
+        <rect
+          id="C5"
+          data-note="c5"
+          data-key="81"
+          class="key white"
+          x="1759"
+          width="232"
+          height="964"
+        />
+        <rect
+          id="D5"
+          data-note="d5"
+          data-key="87"
+          class="key white"
+          x="2011"
+          width="232"
+          height="964"
+        />
+        <rect
+          id="E5"
+          data-note="e5"
+          data-key="69"
+          class="key white"
+          x="2262"
+          width="232"
+          height="964"
+        />
+        <rect
+          id="F5"
+          data-note="f5"
+          data-key="82"
+          class="key white"
+          x="2513"
+          width="232"
+          height="964"
+        />
+        <rect
+          id="G5"
+          data-note="g5"
+          data-key="84"
+          class="key white"
+          x="2767"
+          width="232"
+          height="964"
+        />
+        <rect
+          id="A5"
+          data-note="a5"
+          data-key="89"
+          class="key white"
+          x="3018"
+          width="232"
+          height="964"
+        />
+        <rect
+          id="B5"
+          data-note="b5"
+          data-key="85"
+          class="key white"
+          x="3269"
+          width="232"
+          height="964"
+        />
+        <rect
+          id="C5Sharp"
+          data-note="c#5"
+          data-key="50"
+          class="key black"
+          x="1945"
+          width="112"
+          height="676"
+        />
+        <rect
+          id="D5Sharp"
+          data-note="d#5"
+          data-key="51"
+          class="key black"
+          x="2196"
+          width="112"
+          height="676"
+        />
+        <rect
+          id="F5Sharp"
+          data-note="f#5"
+          data-key="53"
+          class="key black"
+          x="2699"
+          width="112"
+          height="676"
+        />
+        <rect
+          id="G5Sharp"
+          data-note="g#5"
+          data-key="54"
+          class="key black"
+          x="2953"
+          width="112"
+          height="676"
+        />
+        <rect
+          id="A5Sharp"
+          data-note="a#5"
+          data-key="55"
+          class="key black"
+          x="3204"
+          width="112"
+          height="676"
+        />
+        <g id="letters" display="none">
+        <text id="Z" class="letter letterWhole" x="87" y="920">Z</text>
+        <text id="X" class="letter letterWhole" x="330.404" y="919.609">X</text>
+        <text id="C" class="letter letterWhole" x="584.299" y="916.97">C</text>
+        <text id="V" class="letter letterWhole" x="835.391" y="918.651">V</text>
+        <text id="B" class="letter letterWhole" x="1089.788" y="917.72">B</text>
+        <text id="N" class="letter letterWhole" x="1332.68" y="918.97">N</text>
+        <text id="M" class="letter letterWhole" x="1575.611" y="920.442">M</text>
+        <text id="Q" class="letter letterWhole" x="1827.273" y="918.386">Q</text>
+        <text id="W" class="letter letterWhole" x="2078.516" y="918.137">W</text>
+        <text id="E" class="letter letterWhole" x="2348.394" y="920.276">E</text>
+        <text id="R" class="letter letterWhole" x="2591.482" y="919.817">R</text>
+        <text id="T" class="letter letterWhole" x="2853.41" y="918.358">T</text>
+        <text id="Y" class="letter letterWhole" x="3101.231" y="920.887">Y</text>
+        <text id="U" class="letter letterWhole" x="3346.746" y="916.831">U</text>
+        <text id="S" class="letter letterSharp" x="211.5" y="101.04">S</text>
+        <text id="D" class="letter letterSharp" x="451.114" y="100.095">D</text>
+        <text id="G" class="letter letterSharp" x="958.707" y="100.984">G</text>
+        <text id="H" class="letter letterSharp" x="1206.952" y="98.415">H</text>
+        <text id="J" class="letter letterSharp" x="1483.881" y="100.831">J</text>
+        <text id="_2" data-name="2" class="letter letterSharp" x="1971.266" y="100.609">2</text>
+        <text id="_3" data-name="3" class="letter letterSharp" x="2223.089" y="102.47">3</text>
+        <text id="_5" data-name="5" class="letter letterSharp" x="2726.733" y="100.511">5</text>
+        <text id="_6" data-name="6" class="letter letterSharp" x="2980.821" y="103.192">6</text>
+        <text id="_7" data-name="7" class="letter letterSharp" x="3231.539" y="100.886">7</text>
+      </g>
+      </svg>
+    </div>
+    <script src="js/script.js"></script>
+    <footer>
+      <span id="footerText">&copy; 2019 - Graeme Fraser</span>
+    </footer>
+  </body>
+</html>
